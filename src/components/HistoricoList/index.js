@@ -1,22 +1,45 @@
-import React from 'react';
-import { View, Text } from 'react-native';
+import React,{useState} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 
 
-import {Container, Tipo,IconView, ValorText, TipoText} from './styles';
+import {Container, Text, AreaView, Detalhe, TextStatus, RenderList} from './styles';
+
+
+
 
 export default function HistoricoList({data}) {
+
+const [exibir, setExibir] = useState(false);
+
+
+function AlteraExibir(){
+    if(exibir === true){
+        setExibir(false);
+    }else{
+        setExibir(true);
+    }
+}
+
  return (
    <Container>
-       <Tipo>
-           <IconView tipo={data.tipo}>
-               <Icon name={data.tipo === 'despesa' ? 'arrow-down' : 'arrow-up'} color="#fff" size={20}/>
-               <TipoText>{data.tipo}</TipoText>
-           </IconView>
-       </Tipo>
-       <ValorText>
-           R$ {data.valor}
-       </ValorText>
+       <AreaView onPress={AlteraExibir}>
+           <RenderList>
+                <Text>
+                    Nome: {data.nome}
+                </Text>
+                <Text>
+                    Status:<TextStatus status={data.status}>{data.status}</TextStatus> 
+                </Text>
+                    <Detalhe view={exibir}>
+                        <Text>
+                            Idade: {data.idade}
+                        </Text>
+                        <Text>
+                            cidade: {data.cidade}
+                        </Text>
+                    </Detalhe>
+            </RenderList>
+       </AreaView>
    </Container>
   );
 }

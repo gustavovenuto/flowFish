@@ -1,3 +1,4 @@
+import { block } from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
 
@@ -30,8 +31,34 @@ font-weight:bold;
 `;
 
 
+export const Text = styled.Text`
+color:#fff;
+margin-left: 10px;
+`;
 
 
+export const AreaView = styled.TouchableOpacity`
+width:100%;
+border-width:1px;
+border-color: #fff;
+align-items: flex-start;
+justify-content:flex-start;
+background-color: #505050;
+`;
 
 
+export const Detalhe = styled.View`
+width:100%;
+align-items: flex-start;
+justify-content:flex-start;
+display: ${props => props.view === false && 'none'};
+`;
 
+export const TextStatus = styled.Text`
+color: ${props => props.status === 'Pendente' ? '#c62c36' : '#049301'};
+margin-left: 5px;
+`;
+
+export const RenderList = styled.View`
+padding: 4px;
+`;
