@@ -5,15 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816ce31e-1e26-4520-a98a-adfdeb3a16a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.expo-shared/assets.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/icon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/babel.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HistoricoList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HistoricoList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HistoricoList/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HistoricoList/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/gerenciador/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/gerenciador/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/gerenciador/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/gerenciador/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +45,14 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="299" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611161322197">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="299" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1611161322197" />
+    <state x="427" y="240" width="836" height="535" key="AVDManager" timestamp="1611169267755">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="427" y="240" width="836" height="535" key="AVDManager/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1611169267755" />
     <state x="298" y="109" key="FileChooserDialogImpl" timestamp="1608821579125">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

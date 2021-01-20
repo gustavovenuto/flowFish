@@ -62,3 +62,24 @@ export const AreaView = styled.View`
 export const Texte = styled.TouchableOpacity`
 
 `;
+
+
+export const Title = styled.View`
+align-items: center;
+justify-content: center;
+height: 100px;
+`;
+
+export const TextTitle = styled.Text`
+color: #fff;
+font-size: 20px;
+font-weight: bold;
+`;
+
+
+export const Loading = styled.View`
+flex: 1;
+background-color: black;
+align-items: center;
+justify-content: center;
+`;

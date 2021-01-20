@@ -51,7 +51,7 @@ export const Detalhe = styled.View`
 width:100%;
 align-items: flex-start;
 justify-content:flex-start;
-display: ${props => props.view && 'none'};
+${props => props.view === false && 'display:none'};
 `;
 
 export const TextStatus = styled.Text`
@@ -61,4 +61,26 @@ margin-left: 5px;
 
 export const RenderList = styled.View`
 padding: 4px;
+width: 100%;
+`;
+
+
+
+export const AreaIcon = styled.View`
+justify-content: center;
+`;
+
+export const ItemRow = styled.View`
+flex-direction: row;
+width: 100%
+`;
+
+export const AreaSafe = styled.View`
+flex:1;
+`;
+
+export const AreaData = styled.View`
+flex:1;
+align-items: center;
+justify-content: center;
 `;

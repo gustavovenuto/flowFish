@@ -1,10 +1,10 @@
 import React,{useState, useEffect, useContext} from 'react';
-import {View, Text, Container, Body, List, ListView, ListRender, TextRender, BlocView, AreaView, Texte} from './styles';
+import {View, Text, Container, Body, List, ListView, ListRender, TextRender, BlocView, AreaView, Texte, TextTitle, Title, Loading} from './styles';
 import firebase from '../../services/firebaseConnection';
-import {FlatList} from 'react-native';
+import {ActivityIndicator, FlatList, RefreshControl} from 'react-native';
 import HistoricoList from './../../components/HistoricoList';
 import {AuthContext} from '../../contexts/auth';
-import {format} from 'date-fns'
+import {format, set} from 'date-fns'
 
 
 
@@ -12,8 +12,8 @@ import {format} from 'date-fns'
 export default function Gerenciador() {
 
 
-    const [cadList, setCadList] = useState([]);
-
+    const [valueList, setValueList] = useState([]);
+    const [loading, setLoading] = useState(true);
 
 
     const {user} = useContext(AuthContext);
@@ -26,27 +26,30 @@ export default function Gerenciador() {
           const rootRef = firebase.database().ref().child('historico');
           rootRef.on('value', snap => {
 
-              
+              setValueList([]);
               snap.forEach(function(child) {
                 if (child.val()) {
-
+                  
                   child.forEach((child2)=> {
                     let list = {
+                      key: child2.key,
                       nome: child2.val().nome,
-                      estado: child2.val().estado
+                      estado: child2.val().estado,
+                      status: child2.val().status,
+                      date: child2.val().date,
+                      medida: child2.val().medida,
+                      peixe: child2.val().peixe,
+                      rio: child2.val().rio
                     }
-
-                    console.log(list)
+                    
+                    setValueList(oldArray => [...oldArray, list]);
                   })
 
                   
                 }
-                });
-             
-             console.log( snap.val());
-              
-             
-          
+                
+                setLoading(false);
+                });         
               
           });
             
@@ -56,15 +59,17 @@ export default function Gerenciador() {
         loadList();
       }, []);
 
+      
 
 
-
-    const Teste=()=>{
-        console.log(cadList)
-    }
-
-
-    return(
+    if(loading === true){
+      return(
+        <Loading>
+          <ActivityIndicator color="#fff"   size={40}/>
+        </Loading>
+      )
+    }else{
+      return(
         
         <Container>
     
@@ -74,25 +79,27 @@ export default function Gerenciador() {
                     Gerenciador
                 </Text>   
             </Body>
+            <Title>
+                    <TextTitle>Análise para Ranking</TextTitle>
+            </Title>
         </View>
-        {/* <ListView>
+         <ListView>
                     <FlatList 
                     showsVerticalScrollIndicator={false}
-                    data={cadList}
+                    data={valueList}
                     keyExtractor={(item) => item.id}
                     renderItem={({item})=>(<HistoricoList data={item} />)}
                     />
                    
-        </ListView> */}
+        </ListView> 
 
-        <Texte onPress={Teste}>
-                <Text>
-                    teste
-                </Text>
-        </Texte>
 
     </Container>
     )
+    }
+
+
+    
 }
 
 

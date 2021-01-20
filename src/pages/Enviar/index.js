@@ -1,6 +1,6 @@
 import React, {useState, useContext} from 'react';
 import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body} from './styles';
-import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert} from 'react-native';
+import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import firebase from '../../services/firebaseConnection';
 import  {format} from 'date-fns';
@@ -78,6 +78,7 @@ export default function Enviar(){
     return(
        // <TouchableNativeFeedback onPress={() => Keyboard.dismiss() }> habilitar quando tudo pronto
         <View>
+          <ScrollView>
                 <Body> 
                     <TextTitle>
                         Entre no Ranking
@@ -131,6 +132,7 @@ export default function Enviar(){
             
 
                     </SafeAreaView>
+                  </ScrollView>
         </View>
        // </TouchableNativeFeedback>
     )
