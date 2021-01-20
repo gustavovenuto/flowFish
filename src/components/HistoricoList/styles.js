@@ -51,7 +51,7 @@ export const Detalhe = styled.View`
 width:100%;
 align-items: flex-start;
 justify-content:flex-start;
-display: ${props => props.view === false && 'none'};
+display: ${props => props.view && 'none'};
 `;
 
 export const TextStatus = styled.Text`

@@ -57,3 +57,8 @@ border-color: #fff;
 export const AreaView = styled.View`
 
 `;
+
+
+export const Texte = styled.TouchableOpacity`
+
+`;

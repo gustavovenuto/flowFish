@@ -55,6 +55,7 @@ export default function Enviar(){
  
      let key = await firebase.database().ref('historico').child(uid).push().key;
      await firebase.database().ref('historico').child(uid).child(key).set({
+       nome: user.nome,
        peixe: peixe,
        medida: parseFloat(medida),
        estado: estado,

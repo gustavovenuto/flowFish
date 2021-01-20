@@ -1,25 +1,73 @@
-import React,{useState} from 'react';
-import {View, Text, Container, Body, List, ListView, ListRender, TextRender, BlocView, AreaView} from './styles';
+import React,{useState, useEffect, useContext} from 'react';
+import {View, Text, Container, Body, List, ListView, ListRender, TextRender, BlocView, AreaView, Texte} from './styles';
 import firebase from '../../services/firebaseConnection';
 import {FlatList} from 'react-native';
 import HistoricoList from './../../components/HistoricoList';
-
-
-
-
-const dados = [ {id: '1', nome: 'Gustavo bla bla', idade: 17, cidade: 'Franca', status: 'Pendente'},
-                {id: '2', nome: 'Eduardo bla bla', idade: 23, cidade: 'Franca', status: 'Aprovado'},
-                ];
-
+import {AuthContext} from '../../contexts/auth';
+import {format} from 'date-fns'
 
 
 
 
 export default function Gerenciador() {
 
-    return(
-        <Container>
+
+    const [cadList, setCadList] = useState([]);
+
+
+
+    const {user} = useContext(AuthContext);
+
+    
+
+    useEffect(()=>{
+        async function loadList(){
+    
+          const rootRef = firebase.database().ref().child('historico');
+          rootRef.on('value', snap => {
+
+              
+              snap.forEach(function(child) {
+                if (child.val()) {
+
+                  child.forEach((child2)=> {
+                    let list = {
+                      nome: child2.val().nome,
+                      estado: child2.val().estado
+                    }
+
+                    console.log(list)
+                  })
+
+                  
+                }
+                });
+             
+             console.log( snap.val());
+              
+             
+          
+              
+          });
             
+    
+        }
+    
+        loadList();
+      }, []);
+
+
+
+
+    const Teste=()=>{
+        console.log(cadList)
+    }
+
+
+    return(
+        
+        <Container>
+    
         <View> 
             <Body> 
                 <Text>
@@ -27,15 +75,21 @@ export default function Gerenciador() {
                 </Text>   
             </Body>
         </View>
-        <ListView>
+        {/* <ListView>
                     <FlatList 
                     showsVerticalScrollIndicator={false}
-                    data={dados}
+                    data={cadList}
                     keyExtractor={(item) => item.id}
                     renderItem={({item})=>(<HistoricoList data={item} />)}
                     />
                    
-        </ListView> 
+        </ListView> */}
+
+        <Texte onPress={Teste}>
+                <Text>
+                    teste
+                </Text>
+        </Texte>
 
     </Container>
     )
