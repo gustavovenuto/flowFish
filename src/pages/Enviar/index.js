@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body} from './styles';
+import React, {useState, useContext, useEffect} from 'react';
+import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body, SelectVideo, TextSelectVideo} from './styles';
 import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import firebase from '../../services/firebaseConnection';
@@ -8,6 +8,10 @@ import {AuthContext} from '../../contexts/auth';
 
 import Pickerf from '../../components/Picker/index.android';
 import PickerEst from '../../components/PickerEst/index.android';
+
+import * as ImagePicker from 'expo-image-picker';
+import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
+
 
 export default function Enviar(){
     const navigation = useNavigation();
@@ -27,11 +31,11 @@ export default function Enviar(){
     function handleSubmit(){
         Keyboard.dismiss();
         if(isNaN(parseFloat(medida)) || peixe === 'null' || estado === 'null' || rio ==='null'|| null ){
-          console.log('Deu errrado')
+          
           alert('Preencha todos os campos!');
           return;
         }
-        console.log('Deu certo')
+        
       
         Alert.alert(
           'Confirmando dados',
@@ -64,7 +68,8 @@ export default function Enviar(){
        date: format(new Date(), 'dd/MM/yy')
        
      })
-     alert('Enviado com Sucesso!')
+     alert('Enviado com Sucesso!');
+  
      Keyboard.dismiss();
      setPeixe('');
      setMedida('');
@@ -73,6 +78,22 @@ export default function Enviar(){
      navigation.navigate('Home');
  
         
+    }
+
+   
+
+    function openAlbum(){
+      const options = {
+        mediaType: 'video'
+      }
+
+      ImagePicker.launchImageLibraryAsync(options, (response)=>{
+        if(response.didCancel){
+          console.log('image picker cancelado')
+        }else if (response.error){
+          console.log('gerou um erro' + response.error);
+        }
+      })
     }
 
     return(
@@ -122,6 +143,13 @@ export default function Enviar(){
                                 onChangeText={(texto)=> setRio(texto)} 
                                 autoCorrect={false}                               
                             />
+
+                            <Text>Video:</Text>
+                            <SelectVideo onPress={(openAlbum)}>
+                                <TextSelectVideo>
+                                  Selecione o video
+                                </TextSelectVideo>
+                            </SelectVideo>
                         </BodySafe>
 
                         <BodyButtton>

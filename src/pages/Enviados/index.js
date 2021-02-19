@@ -1,20 +1,20 @@
 import React,{useState, useEffect, useContext} from 'react';
-import {View, Text, Container, Body, List, ListView, ListRender, TextRender, BlocView, AreaView, Texte, TextTitle, Title, Loading} from './styles';
+import {View, Text, Container, Body,ListView,  Loading, AreaNull, TextNull} from './styles';
 import firebase from '../../services/firebaseConnection';
 import {ActivityIndicator, FlatList, RefreshControl} from 'react-native';
-import HistoricoList from './../../components/HistoricoList';
+import ListEnviados from './../../components/ListEnviados';
 import {AuthContext} from '../../contexts/auth';
 import {format, set} from 'date-fns'
 
 
 
 
-export default function Gerenciador() {
+export default function Enviados() {
 
 
     const [valueList, setValueList] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const [nullList, setNullList] = useState(true);
 
     const {user} = useContext(AuthContext);
 
@@ -22,32 +22,37 @@ export default function Gerenciador() {
 
     useEffect(()=>{
         async function loadList(){
-    
-          const rootRef = firebase.database().ref().child('historico');
-          rootRef.on('value', snap => {
+          
+          const uid = user.uid;
 
+          const rootRef = firebase.database().ref('historico').child(uid);
+          rootRef.on('value', snap => {
+            if(snap.val() === null){
+            setLoading(false);              
+              
+            }
               setValueList([]);
               snap.forEach(function(child) {
-                if (child.val()) {
-                  
-                  child.forEach((child2)=> {
+               
+                    console.log(child)
                     let list = {
-                      key: child2.key,
-                      nome: child2.val().nome,
-                      estado: child2.val().estado,
-                      status: child2.val().status,
-                      date: child2.val().date,
-                      medida: child2.val().medida,
-                      peixe: child2.val().peixe,
-                      rio: child2.val().rio
+                      key: child.key,
+                      nome: child.val().nome,
+                      estado: child.val().estado,
+                      status: child.val().status,
+                      date: child.val().date,
+                      medida: child.val().medida,
+                      peixe: child.val().peixe,
+                      rio: child.val().rio
                     }
+
                     
                     setValueList(oldArray => [...oldArray, list].reverse());
-                  })
+                 
 
                   
-                }
-                
+              
+                setNullList(false);
                 setLoading(false);
                 });         
               
@@ -68,7 +73,7 @@ export default function Gerenciador() {
           <ActivityIndicator color="#fff"   size={40}/>
         </Loading>
       )
-    }else{
+    }if(nullList === false){
       return(
         
         <Container>
@@ -76,19 +81,17 @@ export default function Gerenciador() {
         <View> 
             <Body> 
                 <Text>
-                    Gerenciador
+                    Enviados
                 </Text>   
             </Body>
-            <Title>
-                    <TextTitle>Análise para Ranking</TextTitle>
-            </Title>
+            
         </View>
          <ListView>
                     <FlatList 
                     showsVerticalScrollIndicator={false}
                     data={valueList}
                     keyExtractor={(item) => item.id}
-                    renderItem={({item})=>(<HistoricoList data={item} />)}
+                    renderItem={({item})=>(<ListEnviados data={item} />)}
                     />
                    
         </ListView> 
@@ -97,6 +100,13 @@ export default function Gerenciador() {
     </Container>
     )
     }
+    return(
+      <AreaNull>
+        <TextNull>
+          Não possui nenhum !
+        </TextNull>
+      </AreaNull>
+    )
 
 
     

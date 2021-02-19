@@ -16,9 +16,9 @@ export default function Pickerf({ onChange, peixe}){
             onValueChange={(valor)=> onChange(valor)}
             >
             <Picker.Item label="Selecione a espécie" value='null' color="#999999"/>
-            <Picker.Item label="Tucunaré Azul" value="tucunareazul"/>
-            <Picker.Item label="Tucunaré Amarelo" value="tucunareamarelo"/>
-            <Picker.Item label="Traira" value="traira"/>
+            <Picker.Item label="Tucunaré Azul" value="Tucunaré Azul"/>
+            <Picker.Item label="Tucunaré Amarelo" value="Tucunaré Amarelo"/>
+            <Picker.Item label="Traira" value="Traira"/>
             </Picker>
                 
         </PickerView>

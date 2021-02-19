@@ -8,7 +8,8 @@ background-color: black;
 
 export const Text = styled.Text`
 color: #fff;
-margin-top: 20px;
+margin-top: 10px;
+margin-bottom: 5px;
 font-size: 20px;
 `;
 
@@ -21,7 +22,6 @@ border-width:1px;
 border-color: #fff;
 font-size: 13px;
 background-color: rgba(255,255,255, 0.9);
-margin-top:3px;
 `;
 
 export const SubmitButton = styled.Button`
@@ -66,4 +66,19 @@ border-bottom-color: #fff;
 
 export const Scroll = styled.ScrollView`
 
+`;
+
+
+export const SelectVideo = styled.TouchableOpacity`
+border-width: 1px;
+border-color: #fff;
+height: 40px;
+width: 120px;
+align-items: center;
+justify-content: center;
+`;
+
+export const TextSelectVideo = styled.Text`
+color: #fff;
+margin-bottom: 5px;
 `;

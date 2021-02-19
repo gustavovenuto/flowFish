@@ -27,14 +27,12 @@ export default function Home() {
      <Header/>
       <Body>
         <Title>
-          Sigam a loja
+          Sigam @wildfishingbr
         </Title>
 
         <Img source={require('../../assets/wild.png')}/>
         
-        <Title>
-            www.wildfishingbrasil.com.br
-        </Title>
+       
       </Body>
    </Background>
   );

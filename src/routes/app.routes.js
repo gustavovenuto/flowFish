@@ -11,6 +11,7 @@ import Home from '../pages/Home';
 import Ranking from '../pages/Ranking';
 import Profile from '../pages/Profile';
 import Enviar from '../pages/Enviar';
+import Enviados from '../pages/Enviados';
 
 const Tab = createBottomTabNavigator();
 
@@ -25,6 +26,9 @@ const icons = {
   },
   Enviar: {
     name: 'ios-navigate'
+  },
+  Enviados: {
+    name: 'ios-rocket'
   },
   Perfil:{
     name: 'ios-people'
@@ -56,6 +60,7 @@ function Tabs(){
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Ranking" component={Ranking} />
         <Tab.Screen name="Enviar" component={Enviar} />
+        <Tab.Screen name="Enviados" component={Enviados}/>
         <Tab.Screen name="Perfil" component={Profile} />
       </Tab.Navigator>
    

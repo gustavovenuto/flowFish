@@ -1,11 +1,12 @@
 import React, {useContext} from 'react';
-import { View, Text } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../../components/Header';
 
 import {AuthContext} from '../../contexts/auth';
 
 import {Container, Nome, NewLink, NewText,Logout, LogoutText, Body} from './styles';
+
+
 
 export default function Profile() {
 
@@ -21,11 +22,11 @@ export default function Profile() {
                 <Nome>
                     {user && user.nome}
                 </Nome>
-       {/* <NewLink onPress={()=> navigation.navigate("Registrar")}>
+        {/* <NewLink onPress={() => navigation.navigate('Ranking')}>
            <NewText>
-               Registrar Gastos
+               Enviados
            </NewText>
-       </NewLink> */}
+       </NewLink>  */}
                 <Logout onPress={() => signOut()}>
                     <LogoutText>
                         Sair
