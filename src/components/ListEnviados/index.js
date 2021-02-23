@@ -1,8 +1,8 @@
 import React,{useState} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
+import {Video, AVPlaybackStatus} from 'expo-av';
 
-
-import {Container, Text, AreaView, Detalhe, TextStatus, RenderList, AreaIcon, ItemRow, AreaSafe, AreaData} from './styles';
+import {Container, Text, AreaView, Detalhe, TextStatus, RenderList, AreaIcon, ItemRow, AreaSafe, AreaData, Button, View} from './styles';
 
 
 
@@ -10,9 +10,9 @@ import {Container, Text, AreaView, Detalhe, TextStatus, RenderList, AreaIcon, It
 export default function ListEnviados({data}) {
 
 const [exibir, setExibir] = useState(false);
+const [statusPlay, setStatusPlay] = React.useState({})
 
-
-
+const video = React.useRef(null);
 
 
 function AlteraExibir(){
@@ -67,6 +67,28 @@ function AlteraExibir(){
                         <Text>
                             Rio: {data.rio}
                         </Text>
+                        <Text>Video:</Text>
+                        <Video
+                            ref={video}
+                            style={{alignSelf: 'center',
+                            width: 320,
+                            height: 200}}
+                            source={{
+                            uri: `${data.video}`,
+                            }}
+                            useNativeControls
+                            resizeMode="contain"
+
+                            onPlaybackStatusUpdate={statusPlay => setStatusPlay(() => statusPlay)}
+                            />
+                            <View>
+                             <Button
+                            title={statusPlay.isPlaying ? 'Pause' : 'Play'}
+                            onPress={() =>
+                                statusPlay.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
+                            }
+                            /> 
+                        </View>
                     </Detalhe>
             </RenderList>
        </AreaView>

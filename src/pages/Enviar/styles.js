@@ -44,7 +44,7 @@ display:flex;
 
 export const ContainerPicker = styled.View`
 align-items:center;
-margin-top:40px;
+margin-top:15px;
 `;
 
 export const BodySafe = styled.View`
@@ -81,4 +81,30 @@ justify-content: center;
 export const TextSelectVideo = styled.Text`
 color: #fff;
 margin-bottom: 5px;
+`;
+
+
+export const AreaIcon = styled.View`
+justify-content: center;
+align-items: center;
+margin-left: 10px;
+border-width: 1px;
+border-color: #fff;
+width: 80;
+height: 80;
+${props => props.view == false && 'display:none'}
+`;
+
+export const AreaVideo = styled.View`
+flex-direction: row;
+`;
+
+export const CancelVideo = styled.TouchableOpacity`
+height: 100%;
+width: 100%;
+align-items: flex-end;
+`;
+
+export const IconVideo = styled.View`
+position: absolute;
 `;

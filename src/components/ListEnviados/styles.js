@@ -84,3 +84,21 @@ flex:1;
 align-items: center;
 justify-content: center;
 `;
+
+
+export const Button = styled.Button`
+flex: 1;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+`;
+
+export const View = styled.View`
+flex: 1;
+justify-content: center;
+background-color: #fff;
+`;
+
+export const Link = styled.TouchableOpacity`
+color: blue;
+`;

@@ -1,13 +1,17 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body, SelectVideo, TextSelectVideo} from './styles';
+import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body, SelectVideo, AreaVideo,CancelVideo,IconVideo,AreaIcon,TextSelectVideo} from './styles';
 import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert, ScrollView} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import firebase from '../../services/firebaseConnection';
 import  {format} from 'date-fns';
 import {AuthContext} from '../../contexts/auth';
+import base64 from 'react-native-base64';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 import Pickerf from '../../components/Picker/index.android';
 import PickerEst from '../../components/PickerEst/index.android';
+import * as FileSystem from 'expo-file-system';
 
 import * as ImagePicker from 'expo-image-picker';
 import { ScreenStackHeaderBackButtonImage } from 'react-native-screens';
@@ -20,6 +24,10 @@ export default function Enviar(){
     const [medida, setMedida] = useState('');
     const [estado, setEstado] = useState('');
     const [rio, setRio] = useState('');
+    const [videoUri, setVideoUri] = useState('');
+    const [icone, setIcone] = useState(false);
+    const [urlPlayVideo, setUrlPlayVideo] = useState('');
+    
 
 
     const {user} = useContext(AuthContext);
@@ -34,8 +42,11 @@ export default function Enviar(){
           
           alert('Preencha todos os campos!');
           return;
-        }
-        
+        } 
+        if(icone == false){
+          alert('Selecione um video');
+          return;
+        } 
       
         Alert.alert(
           'Confirmando dados',
@@ -55,7 +66,37 @@ export default function Enviar(){
     }
 
     async function handleAdd(){
-        let uid = user.uid;
+
+      /* Envia video para o cloudinary */
+      
+
+      let base64Img =  `data:video/mp4;base64,${videoUri}`
+        
+      
+      //Add your cloud name
+      let apiUrl = 'https://api.cloudinary.com/v1_1/dlgq1ko0x/video/upload';
+  
+      let data = {
+        "file": base64Img,
+        "upload_preset": "dlgq1ko0x",
+      }
+      
+      fetch(apiUrl, {
+        body: JSON.stringify(data),
+        headers: {
+          'content-type': 'application/json'
+        },
+        method: 'POST',
+      }).then(async r => {
+          let data = await r.json()
+          setUrlPlayVideo(`${data.secure_url}`)
+          return data.secure_url
+      }).catch(err=>console.log(err))
+
+    /*   Envia para o banco   */
+
+
+      let uid = user.uid;
  
      let key = await firebase.database().ref('historico').child(uid).push().key;
      await firebase.database().ref('historico').child(uid).child(key).set({
@@ -65,9 +106,11 @@ export default function Enviar(){
        estado: estado,
        rio: rio,
        status: status,
+       video: await urlPlayVideo,
        date: format(new Date(), 'dd/MM/yy')
        
-     })
+     })  
+     alert(urlPlayVideo)
      alert('Enviado com Sucesso!');
   
      Keyboard.dismiss();
@@ -75,6 +118,7 @@ export default function Enviar(){
      setMedida('');
      setEstado('');
      setRio('');
+     setIcone(false);
      navigation.navigate('Home');
  
         
@@ -82,18 +126,32 @@ export default function Enviar(){
 
    
 
-    function openAlbum(){
-      const options = {
-        mediaType: 'video'
-      }
+    const openAlbum = async() => {
+      
 
-      ImagePicker.launchImageLibraryAsync(options, (response)=>{
-        if(response.didCancel){
-          console.log('image picker cancelado')
-        }else if (response.error){
-          console.log('gerou um erro' + response.error);
-        }
-      })
+      let response =  await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Videos
+      });
+      
+
+      
+
+      if(!response.cancelled){
+        
+        const resp = await FileSystem.readAsStringAsync(response.uri, {
+        encoding: 'base64'}) 
+        
+        
+        setVideoUri(`${resp}`);
+        setIcone(true);
+       
+        
+      }
+    }
+
+
+    const SelectCancel = ()=>{
+      setIcone(false)
     }
 
     return(
@@ -145,11 +203,29 @@ export default function Enviar(){
                             />
 
                             <Text>Video:</Text>
+                            <AreaVideo>
                             <SelectVideo onPress={(openAlbum)}>
                                 <TextSelectVideo>
                                   Selecione o video
                                 </TextSelectVideo>
                             </SelectVideo>
+                            <AreaIcon view={icone}>
+                              <IconVideo>
+                                  <Icon
+                                    name={icone ? 'film' : ''}
+                                    size={40}
+                                    color='#fff' 
+                                  />
+                              </IconVideo>
+                              <CancelVideo onPress={SelectCancel}>
+                                  <Icon
+                                    name={icone ? 'x' : ''}
+                                    size={20}
+                                    color='#fff'
+                                  />
+                              </CancelVideo>
+                            </AreaIcon>
+                            </AreaVideo>
                         </BodySafe>
 
                         <BodyButtton>

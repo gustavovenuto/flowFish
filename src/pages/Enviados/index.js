@@ -43,7 +43,8 @@ export default function Enviados() {
                       date: child.val().date,
                       medida: child.val().medida,
                       peixe: child.val().peixe,
-                      rio: child.val().rio
+                      rio: child.val().rio,
+                      video: child.val().video
                     }
 
                     
