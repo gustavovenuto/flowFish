@@ -108,3 +108,15 @@ align-items: flex-end;
 export const IconVideo = styled.View`
 position: absolute;
 `;
+
+
+export const ViewLoad = styled.View`
+flex: 1;
+justify-content: center;
+background-color:black;
+`;
+
+export const Image = styled.Image`
+height: 100%;
+width: 100%;
+`;

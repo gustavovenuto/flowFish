@@ -32,18 +32,16 @@ font-weight:bold;
 
 
 export const Text = styled.Text`
-color:#fff;
+color:black;
 margin-left: 10px;
+font-family: Roboto;
 `;
 
 
 export const AreaView = styled.View`
 width:100%;
-border-width:1px;
-border-color: #fff;
 align-items: flex-start;
 justify-content:flex-start;
-background-color: #505050;
 `;
 
 
@@ -52,6 +50,7 @@ width:100%;
 align-items: flex-start;
 justify-content:flex-start;
 ${props => props.view === false && 'display:none'};
+margin-top: 15px;
 `;
 
 export const TextStatus = styled.Text`
@@ -62,6 +61,9 @@ margin-left: 5px;
 export const RenderList = styled.View`
 padding: 4px;
 width: 100%;
+background-color:#fff;
+border-radius: 5px;
+box-shadow: 0px 5px 21px rgb(114, 197, 216);
 `;
 
 
@@ -88,7 +90,6 @@ justify-content: center;
 
 export const Button = styled.Button`
 flex: 1;
-flex-direction: row;
 justify-content: center;
 align-items: center;
 `;
@@ -115,9 +116,9 @@ export const ButtonVideo = styled.TouchableOpacity`
 `;
 
 export const TextVideo = styled.Text`
-color: #fff;
+color: #000;
 text-decoration: underline;
-text-decoration-color: #fff;
+text-decoration-color: #000;
 `;
 
 export const ViewLoad = styled.View`
@@ -134,6 +135,28 @@ width: 100%;
 export const ViewExibirVideo = styled.View`
 margin-left: 10px;
 border:solid 1px;
-border-color: #fff;
+border-color: #000;
 padding: 5px;
+`;
+
+
+export const TextNome = styled.Text`
+color:black;
+margin-left: 10px;
+font-size: 1.1em;
+font-weight: bolder;
+font-family: Roboto;
+`;
+
+
+export const AreaIconDet = styled.View`
+align-items: center;
+`;
+
+
+export const TextData = styled.Text`
+color:#696969;
+margin-left: 10px;
+font-size: 13px;
+font-family: Roboto;
 `;

@@ -5,26 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="816ce31e-1e26-4520-a98a-adfdeb3a16a9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ListEnviados/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ListEnviados/styles.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Enviados/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/Enviados/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/favicon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/favicon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/splash.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/splash.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Picker/index.android.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Picker/index.android.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Picker/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Picker/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PickerEst/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PickerEst/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HistoricoList/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HistoricoList/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HistoricoList/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HistoricoList/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ListEnviados/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListEnviados/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ListEnviados/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ListEnviados/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Video/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Video/styles.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/contexts/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Enviados/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Enviados/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Enviados/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Enviados/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Enviar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Enviar/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Enviar/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Enviar/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Profile/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Profile/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Profile/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Species/Traira/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Species/Traira/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Species/Traira/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Species/Traira/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/gerenciador/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/gerenciador/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/app.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/app.routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/admin.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/admin.routes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -64,13 +71,17 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="299" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1611161322197" />
-    <state x="305" y="234" width="836" height="535" key="AVDManager" timestamp="1612551851487">
+    <state x="551" y="219" width="836" height="535" key="AVDManager" timestamp="1615175544211">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="305" y="234" width="836" height="535" key="AVDManager/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1612551851487" />
-    <state x="298" y="109" key="FileChooserDialogImpl" timestamp="1611382800701">
+    <state x="551" y="219" width="836" height="535" key="AVDManager/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1615175544211" />
+    <state x="905" y="152" key="FileChooserDialogImpl" timestamp="1614132735441">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="298" y="109" key="FileChooserDialogImpl/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1611382800701" />
+    <state x="905" y="152" key="FileChooserDialogImpl/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1614132735441" />
+    <state x="307" y="150" key="SettingsEditor" timestamp="1614132794704">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="307" y="150" key="SettingsEditor/0.0.1600.860/-1920.-325.1920.1040@0.0.1600.860" timestamp="1614132794704" />
   </component>
 </project>

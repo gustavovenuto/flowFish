@@ -27,7 +27,7 @@ export default function Home() {
      <Header/>
       <Body>
         <Title>
-          Sigam @wildfishingbr
+          Sigam no Instagram @wildfishingbr
         </Title>
 
         <Img source={require('../../assets/wild.png')}/>

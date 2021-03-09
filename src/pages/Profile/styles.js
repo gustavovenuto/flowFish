@@ -51,10 +51,33 @@ export const Body = styled.View`
     justify-content: center;
 `;
 
+export const SelectImage = styled.TouchableOpacity`
+
+`;
+
+export const Text = styled.Text`
+color: #fff;
+`;
+
+export const ViewLoad = styled.View`
+flex: 1;
+justify-content: center;
+background-color:black;
+`;
+
+export const Image = styled.Image`
+height: 100%;
+width: 100%;
+`;
 
 
+export const ImagePerfil = styled.Image`
+width: 200px;
+height: 200px;
+border-radius: 50px;
+`;
 
-
-
-
-
+export const View = styled.View`
+justify-content:center;
+align-items: center;
+`;

@@ -20,6 +20,7 @@ align-items:center;
 justify-content:center;
 font-weight: bold;
 display:flex;
+font-family: Roboto;
 `;
 
 
@@ -60,19 +61,23 @@ width: 100%;
 height:54px;
 border-bottom-width:1px;
 border-bottom-color: #fff;
+flex-direction: row-reverse;
+box-shadow: 0px 6px 13px rgb(115, 113, 113);
 `;
 
 export const Bodytitle = styled.View`
-height:54px;
+
 `;
 
 export const TextTitle = styled.Text`
 color: #fff;
+border-top:30px;
 justify-content: center;
 align-items: center;
 height: 100%;
 font-size: 30px;
 text-align: center;
+font-family: Roboto;
 `;
 
 
@@ -86,4 +91,55 @@ margin-right:10px;
 
 export const Name = styled.Text`
 color:#fff;
+`;
+
+export const Loading = styled.View`
+flex: 1;
+background-color: black;
+align-items: center;
+justify-content: center;
+`;
+
+export const ListView = styled.View`
+flex:1;
+`;
+
+export const AreaFirst = styled.View`
+flex:1;
+`;
+
+export const BarraClass = styled.View`
+background-color:#000;
+height:30px;
+justify-content:center;
+flex-direction: row;
+align-items: center;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+border-top-width: 3px;
+border-bottom-width: 2px;
+border-color: rgb(206, 129, 255);
+`;
+
+export const TextClass = styled.Text`
+flex:1;
+font-weight: bold;
+margin-left:20px;
+font-size:12px;
+color: #Fff;
+font-family: Roboto;
+`;
+
+export const TextClassMedida = styled.Text`
+flex:1;
+font-weight: bold;
+margin-left:100px;
+font-size:12px;
+color: #fff;
+font-family: Roboto;
+`;
+
+
+export const FlatList = styled.FlatList`
+background-color: #000;
 `;

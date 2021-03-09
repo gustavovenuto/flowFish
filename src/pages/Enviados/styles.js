@@ -99,3 +99,14 @@ font-size: 24px;
 text-align:center;
 
 `;
+
+export const ViewLoad = styled.View`
+flex: 1;
+justify-content: center;
+background-color:black;
+`;
+
+export const Image = styled.Image`
+height: 100%;
+width: 100%;
+`;

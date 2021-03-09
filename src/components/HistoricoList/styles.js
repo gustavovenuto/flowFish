@@ -37,7 +37,7 @@ margin-left: 10px;
 `;
 
 
-export const AreaView = styled.TouchableOpacity`
+export const AreaView = styled.View`
 width:100%;
 border-width:1px;
 border-color: #fff;
@@ -72,7 +72,7 @@ justify-content: center;
 
 export const ItemRow = styled.View`
 flex-direction: row;
-width: 100%
+width: 100%;
 `;
 
 export const AreaSafe = styled.View`
@@ -83,4 +83,56 @@ export const AreaData = styled.View`
 flex:1;
 align-items: center;
 justify-content: center;
+`;
+
+
+export const Button = styled.Button`
+flex: 1;
+justify-content: center;
+align-items: center;
+`;
+
+export const View = styled.View`
+flex: 1;
+justify-content: center;
+background-color: #fff;
+`;
+
+export const Link = styled.TouchableOpacity`
+color: blue;
+`;
+
+export const ViewContainer = styled.View`
+flex:1;
+justify-content: center;
+align-items: center;
+${props => props.exVideo === false && 'display:none'};
+`;
+
+export const ButtonVideo = styled.TouchableOpacity`
+
+`;
+
+export const TextVideo = styled.Text`
+color: #fff;
+text-decoration: underline;
+text-decoration-color: #fff;
+`;
+
+export const ViewLoad = styled.View`
+flex: 1;
+justify-content: center;
+background-color:black;
+`;
+
+export const Image = styled.Image`
+height: 100%;
+width: 100%;
+`;
+
+export const ViewExibirVideo = styled.View`
+margin-left: 10px;
+border:solid 1px;
+border-color: #fff;
+padding: 5px;
 `;

@@ -1,5 +1,5 @@
 import React,{useState, useEffect, useContext} from 'react';
-import {View, Text, Container, Body,ListView,  Loading, AreaNull, TextNull} from './styles';
+import {View, Text, Container, Body,ListView,  Loading, AreaNull, TextNull,ViewLoad, Image } from './styles';
 import firebase from '../../services/firebaseConnection';
 import {ActivityIndicator, FlatList, RefreshControl} from 'react-native';
 import ListEnviados from './../../components/ListEnviados';
@@ -13,7 +13,7 @@ export default function Enviados() {
 
 
     const [valueList, setValueList] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [nullList, setNullList] = useState(true);
 
     const {user} = useContext(AuthContext);
@@ -23,18 +23,17 @@ export default function Enviados() {
     useEffect(()=>{
         async function loadList(){
           
+          setLoading(true)
           const uid = user.uid;
 
-          const rootRef = firebase.database().ref('historico').child(uid);
+          const rootRef = await firebase.database().ref('historico').child(uid);
           rootRef.on('value', snap => {
-            if(snap.val() === null){
-            setLoading(false);              
-              
-            }
+
+          
               setValueList([]);
               snap.forEach(function(child) {
                
-                    console.log(child)
+                  
                     let list = {
                       key: child.key,
                       nome: child.val().nome,
@@ -50,10 +49,12 @@ export default function Enviados() {
                     
                     setValueList(oldArray => [...oldArray, list].reverse());
                  
-
-                  
-              
-                setNullList(false);
+                if(valueList.video == ''){
+                  setLoading(true);
+                  console.log(valueList.video)
+                }
+                console.log(valueList.video)                
+                
                 setLoading(false);
                 });         
               
@@ -68,13 +69,9 @@ export default function Enviados() {
       
 
 
-    if(loading === true){
-      return(
-        <Loading>
-          <ActivityIndicator color="#fff"   size={40}/>
-        </Loading>
-      )
-    }if(nullList === false){
+      if(loading == true){
+        return <ViewLoad><Image source={require('./../../assets/loadingGif.gif')} /></ViewLoad>
+    }
       return(
         
         <Container>
@@ -90,7 +87,7 @@ export default function Enviados() {
          <ListView>
                     <FlatList 
                     showsVerticalScrollIndicator={false}
-                    data={valueList}
+                    data= {valueList}
                     keyExtractor={(item) => item.id}
                     renderItem={({item})=>(<ListEnviados data={item} />)}
                     />
@@ -101,17 +98,11 @@ export default function Enviados() {
     </Container>
     )
     }
-    return(
-      <AreaNull>
-        <TextNull>
-          Não possui nenhum !
-        </TextNull>
-      </AreaNull>
-    )
+    
 
 
     
-}
+
 
 
 

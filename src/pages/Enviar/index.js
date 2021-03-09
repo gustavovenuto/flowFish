@@ -1,12 +1,13 @@
 import React, {useState, useContext, useEffect} from 'react';
-import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body, SelectVideo, AreaVideo,CancelVideo,IconVideo,AreaIcon,TextSelectVideo} from './styles';
-import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert, ScrollView} from 'react-native';
+import {View, Text, TextInput, SubmitButton, TextTitle, ContainerPicker, BodySafe, BodyButtton, Body, SelectVideo, ViewLoad,AreaVideo,CancelVideo,IconVideo,AreaIcon,Image,TextSelectVideo} from './styles';
+import {Keyboard, SafeAreaView, TouchableNativeFeedback, KeyboardAvoidingView, Platform,Alert, ScrollView, ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import firebase from '../../services/firebaseConnection';
-import  {format} from 'date-fns';
+import  {format, set} from 'date-fns';
 import {AuthContext} from '../../contexts/auth';
 import base64 from 'react-native-base64';
 import Icon from 'react-native-vector-icons/Feather';
+
 
 
 import Pickerf from '../../components/Picker/index.android';
@@ -27,6 +28,7 @@ export default function Enviar(){
     const [videoUri, setVideoUri] = useState('');
     const [icone, setIcone] = useState(false);
     const [urlPlayVideo, setUrlPlayVideo] = useState('');
+    const [loading, setLoading] = useState(false);
     
 
 
@@ -66,10 +68,9 @@ export default function Enviar(){
     }
 
     async function handleAdd(){
-
+      setLoading(true);
       /* Envia video para o cloudinary */
       
-
       let base64Img =  `data:video/mp4;base64,${videoUri}`
         
       
@@ -81,22 +82,27 @@ export default function Enviar(){
         "upload_preset": "dlgq1ko0x",
       }
       
-      fetch(apiUrl, {
-        body: JSON.stringify(data),
-        headers: {
-          'content-type': 'application/json'
-        },
-        method: 'POST',
-      }).then(async r => {
-          let data = await r.json()
-          setUrlPlayVideo(`${data.secure_url}`)
-          return data.secure_url
-      }).catch(err=>console.log(err))
+      
+        const videoUploadResponse = await fetch(apiUrl, {
+              body: JSON.stringify(data),
+              headers: {
+                'content-type': 'application/json'
+              },
+              method: 'POST',
+            })
+        // acredito que aqui não precisa de await, é bom evitar usar quando não precisa, pq deixa mais lento
+        const dataf = await videoUploadResponse.json();
+        console.log(dataf.secure_url)
+        const secure_url = dataf.secure_url;
+        
+      
+     
 
     /*   Envia para o banco   */
-
-
-      let uid = user.uid;
+    
+    
+    const video = secure_url;
+    let uid = user.uid;
  
      let key = await firebase.database().ref('historico').child(uid).push().key;
      await firebase.database().ref('historico').child(uid).child(key).set({
@@ -106,13 +112,13 @@ export default function Enviar(){
        estado: estado,
        rio: rio,
        status: status,
-       video: await urlPlayVideo,
+       video: video,
        date: format(new Date(), 'dd/MM/yy')
        
-     })  
-     alert(urlPlayVideo)
+     })
+     setLoading(false);  
      alert('Enviado com Sucesso!');
-  
+     
      Keyboard.dismiss();
      setPeixe('');
      setMedida('');
@@ -128,32 +134,34 @@ export default function Enviar(){
 
     const openAlbum = async() => {
       
-
+      setLoading(true);
+      
       let response =  await ImagePicker.launchImageLibraryAsync({
         mediaTypes: ImagePicker.MediaTypeOptions.Videos
       });
       
-
-      
-
+     
       if(!response.cancelled){
         
         const resp = await FileSystem.readAsStringAsync(response.uri, {
         encoding: 'base64'}) 
-        
-        
-        setVideoUri(`${resp}`);
+         
+        setVideoUri(resp)
         setIcone(true);
-       
-        
+        setLoading(false);
       }
+      
     }
 
 
     const SelectCancel = ()=>{
+      setUrlPlayVideo('');
       setIcone(false)
     }
 
+    if(loading == true){
+        return <ViewLoad><Image source={require('./../../assets/loadingGif.gif')} /></ViewLoad>
+    }
     return(
        // <TouchableNativeFeedback onPress={() => Keyboard.dismiss() }> habilitar quando tudo pronto
         <View>

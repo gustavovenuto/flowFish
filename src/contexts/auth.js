@@ -13,6 +13,7 @@ function AuthProvider({children}){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     const [loadingAuth, setLoadingAuth] = useState(false);
+    const [photo, setPhoto] = useState('')
 
     useEffect(()=>{
         async function loadStorage(){
@@ -68,7 +69,8 @@ function AuthProvider({children}){
             const uid = value.user.uid
             await firebase.database().ref('users').child(uid).set({
                 nome: nome,
-                date: format(new Date(), 'dd/MM/yy')
+                date: format(new Date(), 'dd/MM/yy'),
+                photo: photo
             })
             .then(()=> {
                 const data = {

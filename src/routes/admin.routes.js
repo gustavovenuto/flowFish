@@ -20,7 +20,7 @@ const icons = {
   Home: {
     name: 'ios-home'
   },
-  Ranking:{
+  Classificação:{
     name: 'md-podium'
   },
   Gerenciador: {
@@ -54,7 +54,7 @@ function Tabs(){
       }}
       >
         <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Ranking" component={Ranking} />
+        <Tab.Screen name="Classificação" component={Ranking} />
         <Tab.Screen name="Gerenciador" component={Gerenciador} />
         <Tab.Screen name="Perfil" component={Profile} />
       </Tab.Navigator>

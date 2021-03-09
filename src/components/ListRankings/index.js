@@ -2,13 +2,15 @@ import React,{useState} from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 import {Video, AVPlaybackStatus} from 'expo-av';
 
-import {Container, Text, AreaView, Detalhe, TextStatus, RenderList, AreaIcon,ViewLoad, ItemRow,Image, ViewExibirVideo,TextVideo,ButtonVideo,ViewContainer,AreaSafe, AreaData, Button, View} from './styles';
+
+import {Container, Text, AreaView, Detalhe, TextStatus, TextData,RenderList,TextNome, AreaIcon,ViewLoad, AreaIconDet,ItemRow,Image, ViewExibirVideo,TextVideo,ButtonVideo,ViewContainer,AreaSafe, AreaData, Button, View} from './styles';
 import { set } from 'date-fns';
 
 
 
 
-export default function ListEnviados({data}) {
+export default function ListRanking({data}) {
+
 
 const [exibir, setExibir] = useState(false);
 const [exibirVideo, setExibirVideo] = useState(false);
@@ -40,24 +42,28 @@ function AlteraExibirVideo(){
                 <ItemRow>
                     
                     <AreaSafe>
-                    <Text>
-                        Nome: {data.nome}
-                    </Text>
-
-                    <Text>
-                        Status:<TextStatus status={data.status}>{data.status}</TextStatus> 
-                    </Text>
+                    <TextNome>
+                         {data.nome}
+                    </TextNome>
+                        <TextData>Data: {data.date}</TextData>
                     </AreaSafe>
                     <AreaData>
-                        <Text>Data: {data.date}</Text>
+                        <Text>{data.medida} Cm </Text>
                     </AreaData>
-
+                    {/* <AreaIconDet>
+                        <Icon
+                            onPress={AlteraExibir}
+                            name="chevron-right"
+                            size={30}
+                            color='black'
+                            />
+                    </AreaIconDet> */}
                     <AreaIcon>
                         <Icon 
                             onPress={AlteraExibir}
                             name={exibir ? 'chevron-up' : 'chevron-down'}
                             size={20}
-                            color='#fff'
+                            color='black'
                         />
                     </AreaIcon>
                 </ItemRow> 

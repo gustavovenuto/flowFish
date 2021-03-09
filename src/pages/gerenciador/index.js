@@ -4,7 +4,7 @@ import firebase from '../../services/firebaseConnection';
 import {ActivityIndicator, FlatList, RefreshControl} from 'react-native';
 import HistoricoList from './../../components/HistoricoList';
 import {AuthContext} from '../../contexts/auth';
-import {format, set} from 'date-fns'
+
 
 
 
@@ -39,7 +39,8 @@ export default function Gerenciador() {
                       date: child2.val().date,
                       medida: child2.val().medida,
                       peixe: child2.val().peixe,
-                      rio: child2.val().rio
+                      rio: child2.val().rio,
+                      video: child2.val().video
                     }
                     
                     setValueList(oldArray => [...oldArray, list].reverse());
