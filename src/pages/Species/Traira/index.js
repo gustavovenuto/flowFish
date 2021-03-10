@@ -79,7 +79,6 @@ export default function Traira(){
                         Classificações
                     </Text>
                     <Link onPress={()=> navigation.goBack()}>
-
                     <Icon
                     name="md-arrow-back"
                     size={30}

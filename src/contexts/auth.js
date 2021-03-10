@@ -13,7 +13,7 @@ function AuthProvider({children}){
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true)
     const [loadingAuth, setLoadingAuth] = useState(false);
-    const [photo, setPhoto] = useState('')
+    const [photo, setPhoto] = useState('https://res.cloudinary.com/dlgq1ko0x/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1615166992/oleo7hjptcbeficu5avs.jpg')
 
     useEffect(()=>{
         async function loadStorage(){

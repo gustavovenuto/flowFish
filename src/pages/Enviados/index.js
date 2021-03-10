@@ -14,7 +14,6 @@ export default function Enviados() {
 
     const [valueList, setValueList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [nullList, setNullList] = useState(true);
 
     const {user} = useContext(AuthContext);
 
@@ -29,10 +28,14 @@ export default function Enviados() {
           const rootRef = await firebase.database().ref('historico').child(uid);
           rootRef.on('value', snap => {
 
-          
+             
               setValueList([]);
+
+              if(snap.val() == null){
+                alert('Nenhum cadastro foi enviado')
+                    return;
+              }
               snap.forEach(function(child) {
-               
                   
                     let list = {
                       key: child.key,
@@ -49,10 +52,7 @@ export default function Enviados() {
                     
                     setValueList(oldArray => [...oldArray, list].reverse());
                  
-                if(valueList.video == ''){
-                  setLoading(true);
-                  console.log(valueList.video)
-                }
+                
                 console.log(valueList.video)                
                 
                 setLoading(false);

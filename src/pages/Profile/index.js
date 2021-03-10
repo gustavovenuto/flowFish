@@ -1,6 +1,7 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import Header from '../../components/Header';
+import firebase from '../../services/firebaseConnection';
 import * as ImagePicker from 'expo-image-picker';
 import * as FileSystem from 'expo-file-system';
 
@@ -18,24 +19,61 @@ export default function Profile() {
 
     const [loading, setLoading] = useState(false);
 
-    const [photo, setPhoto] = useState('https://res.cloudinary.com/dlgq1ko0x/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1615166992/oleo7hjptcbeficu5avs.jpg');
+    const [ upPhoto, setUpPhoto] = useState('');
+
+    const [exibir, setExibir] = useState(false);
+
+    const [photo, setPhoto] = useState('');
 
     async function handleAdd(){
+
+      console.log(photo)
       setLoading(true);
 
-        let uid = user.uid;
-
-       await firebase.database().ref('users').child(uid).update({
-        photo:  `${photo}` 
+        const uid = user.uid;
        
+        console.log(uid)
+       await firebase.database().ref('users').child(uid).update({
+         photo: photo,
+       }).then(()=>{
+        setLoading(false);
+        setExibir(false);  
+        alert('Enviado com Sucesso!');
       })
-      setLoading(false);  
-      alert('Enviado com Sucesso!');
       
-      
- 
         
     }
+
+
+    useEffect(()=>{
+      async function loadList(){
+        
+        setLoading(true)
+        const uid = user.uid;
+
+        const rootRef = await firebase.database().ref('users').child(uid);
+        rootRef.on('value', snap => {
+
+            const data = {
+              photo: snap.val().photo
+            } 
+
+            console.log(data)
+            
+            console.log(data.photo)                
+            setUpPhoto(data);
+            setLoading(false);
+
+            
+                     
+            
+        });
+          
+  
+      }
+  
+      loadList();
+    }, []);
 
     
     
@@ -57,7 +95,7 @@ export default function Profile() {
        
         if(!response.cancelled){
 
-            
+            setExibir(true);
           let uri = `data:image/jpg;base64,${response.base64}`;
 
             
@@ -77,7 +115,6 @@ export default function Profile() {
           })
         
           const dataf = await imageUploadResponse.json();
-          console.log(dataf.secure_url)
           const secure_url = dataf.secure_url;
           setPhoto(secure_url)
             setLoading(false);
@@ -100,10 +137,10 @@ export default function Profile() {
        <Header/>
             <Body>
                 <View>
-                    <ImagePerfil source={{uri: photo}}/>
+                    <ImagePerfil source={{uri: exibir ? photo : `${upPhoto.photo}`}}/>
                 </View>
                 <SelectImage onPress={openAlbum}>
-                    <Text>Selecione foto</Text>
+                    <Text>Selecionar foto</Text>
                 </SelectImage>
                 <SelectImage onPress={handleAdd}>
                     <Text>Salvar</Text>

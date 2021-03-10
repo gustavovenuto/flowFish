@@ -143,8 +143,8 @@ padding: 5px;
 export const TextNome = styled.Text`
 color:black;
 margin-left: 10px;
-font-size: 1.1em;
-font-weight: bolder;
+font-size: 19px;
+font-weight: bold;
 font-family: Roboto;
 `;
 
