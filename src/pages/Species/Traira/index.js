@@ -32,6 +32,7 @@ export default function Traira(){
                 if (child.val()) {
                   
                   child.forEach((child2)=> {
+                    console.log(child2.val());
                     let list = {
                       key: child2.key,
                       nome: child2.val().nome,
