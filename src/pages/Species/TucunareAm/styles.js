@@ -45,8 +45,8 @@ export const Button = styled.Button`
 
 
 export const Img = styled.Image`
-height:100%;
-width:100%;
+height:40px;
+width:40px;
 `;
 
 export const TouchableOpacity = styled.TouchableOpacity`
@@ -63,7 +63,9 @@ border-bottom-color: #fff;
 `;
 
 export const Bodytitle = styled.View`
-height:54px;
+justify-content: center;
+align-items: center;
+display: flex;
 `;
 
 export const TextTitle = styled.Text`

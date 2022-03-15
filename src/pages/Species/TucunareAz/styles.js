@@ -87,3 +87,10 @@ margin-right:10px;
 export const Name = styled.Text`
 color:#fff;
 `;
+
+export const Loading = styled.View`
+flex: 1;
+background-color: black;
+align-items: center;
+justify-content: center;
+`;

@@ -29,35 +29,34 @@ export default function TucunaAmarelo(){
               snap.forEach(function(child) {
                   //console.log(child.val());
                 if (child.val()) {
+                    const array = Object.values( child.val() );
+                    const aprovados = array.filter(pescador => pescador.status == "Aprovado" && pescador.peixe == "Tucunaré Amarelo");
+
+                    console.log(aprovados);
                   
-                  child.forEach((child2)=> {
-                      console.log(child2.val().nome);
-                    child2.forEach((child3)=> {
-                        //console.log(child3.val());
-                        //console.log(child3.val().nome) 
-                    })
+                  aprovados.forEach((aprovado)=> {
                     let list = {
-                      key: child2.key,
-                      nome: child2.val().nome,
-                      medida: child2.val().medida,
-                      peixe: child2.val().peixe,
+                      key: aprovado.key,
+                      nome: aprovado.nome,
+                      medida: aprovado.medida,
+                      peixe: aprovado.peixe,
                     }
+
                     
                     setValueList(oldArray => [...oldArray, list].reverse());
                   })
 
                   
                 }
-                
+
                 setLoading(false);
                 });         
               
           });
-            
-          console.log(valueList);
         }
     
         loadList();
+
       }, []);
 
     const navigation = useNavigation();
@@ -89,6 +88,7 @@ export default function TucunaAmarelo(){
                 </Link>
 
                 <Bodytitle>
+                    <Img source={require('../../../assets/trofeu.png')}/>
                     <TextTitle>Tucunaré Amarelo</TextTitle>
                 </Bodytitle>
                 
@@ -126,16 +126,21 @@ export default function TucunaAmarelo(){
                             <th style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Pescador</th>
                             <th style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>Medida</th>
                         </tr>
-                        <tr style={{display: 'flex', border: '1px solid white'}}>
-                            <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>1</td>
-                            <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>Jorge</td>
-                            <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>58cm</td>
-                        </tr>
-                        <tr style={{display: 'flex', border: '1px solid white'}}>
+                        {valueList.map(( listValue, index ) => {
+                            return (
+                                <tr style={{display: 'flex', border: '1px solid white'}} key={index}>
+                                    <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>{index+1}</td>
+                                    <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>{listValue.nome}</td>
+                                    <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>{listValue.medida}</td>
+                                </tr>
+                            );
+                        })}
+                       
+                       {/*  <tr style={{display: 'flex', border: '1px solid white'}}>
                             <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>2</td>
                             <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>Paulo</td>
                             <td style={{width: '95px', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white'}}>56cm</td>
-                        </tr>
+                        </tr> */}
                     </table>
                 </div>
                 
