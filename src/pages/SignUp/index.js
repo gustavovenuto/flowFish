@@ -23,11 +23,10 @@ function handleSignUp(){
 
  return (
    <Background>
-       <Container behavior={Platform.OS === 'ios' ? 'padding' : ''}>
-
-         
-        <Text style={{color: 'green', fontSize: 40}}>Cadastro</Text>
-        
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <Text style={{color: 'white', fontSize: 40}}>Cadastro</Text>
+      </div>
+       <Container>
          <AreaInput>
           
           <Input 
@@ -43,11 +42,11 @@ function handleSignUp(){
           <AreaInput>
           
             <Input 
-            placeholder="Email"
-            autoCorrect={false}
-            autoCapitalize="none"
-            value={email}
-            onChangeText={(texto) => setEmail(texto)}
+              placeholder="Email"
+              autoCorrect={false}
+              autoCapitalize="none"
+              value={email}
+              onChangeText={(texto) => setEmail(texto)}
             />
 
           </AreaInput>
@@ -55,12 +54,12 @@ function handleSignUp(){
           <AreaInput>
           
             <Input 
-            placeholder="Senha"
-            autoCorrect={false}
-            autoCapitalize="none"
-            value={password}
-            secureTextEntry={true}
-            onChangeText={(texto) => setPassword(texto)}
+              placeholder="Senha"
+              autoCorrect={false}
+              autoCapitalize="none"
+              value={password}
+              secureTextEntry={true}
+              onChangeText={(texto) => setPassword(texto)}
             />
 
           </AreaInput>
