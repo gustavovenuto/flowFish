@@ -1,9 +1,9 @@
 import React, {useState, useContext} from 'react';
-import { View, Text, Platform, ActivityIndicator} from 'react-native';
+import { View, Text, Platform, ActivityIndicator, Modal} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import { AuthContext} from '../../contexts/auth';
 
-import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, LogoText} from './styles';
+import { Background, Container, Logo, AreaInput, Input, SubmitButton, SubmitText, Link, LinkText, LogoText, BodyRedefinirSenha, BodyCadastrar, TextRedefirSenha} from './styles';
 
 export default function SignIn() {
 
@@ -61,8 +61,19 @@ function handleLogin(){
           </SubmitButton>
 
           <Link onPress={()=> navigation.navigate('SignUp')}>
-            <LinkText>Criar uma conta</LinkText>
+            <LinkText>Esqueceu sua senha ?</LinkText>
           </Link>
+
+         
+          <BodyCadastrar>
+
+            <TextRedefirSenha>Não tem uma conta ?</TextRedefirSenha>
+
+            <Link onPress={()=> navigation.navigate('SignUp')}>
+              <LinkText  style={{textAlign: 'center', fontSize: '20px'}} >Cadastre-se</LinkText>
+            </Link>
+
+          </BodyCadastrar>
 
        </Container>
    </Background>

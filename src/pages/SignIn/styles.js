@@ -33,15 +33,19 @@ color: #fff;
 margin-bottom: 10px;
 border-radius: 7px;
 padding: 10px;
+border: 1px solid #fff;
 `;
 
 export const SubmitButton = styled.TouchableOpacity`
 align-items: center;
 justify-content: center;
-width: 90%;
+width: 50%;
 height: 45px;
 border-radius: 7px;
 margin-top: 10px;
+padding: 8px 80px;
+border: 1px solid #fff;
+border-radius: 30px;
 `;
 
 export const SubmitText = styled.Text`
@@ -62,5 +66,16 @@ export const LogoText = styled.Text`
 font-size:30px;
 font-weight: bold;
 font-style: Cooper Black;
+`;
 
+export const BodyRedefinirSenha = styled.View`
+display: flex;
+`;
+
+export const BodyCadastrar = styled.View`
+margin-top: 17%;
+`;
+
+export const TextRedefirSenha = styled.Text`
+color: #fff;
 `;
